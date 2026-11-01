@@ -1,4 +1,19 @@
 // PDCrest API: Super (Gemini) + voice (ElevenLabs). Keys come from environment variables only.
+const fs = require('fs');
+const path = require('path');
+
+const MIME_TYPES = {
+  '.html': 'text/html; charset=utf-8',
+  '.js': 'application/javascript; charset=utf-8',
+  '.webmanifest': 'application/manifest+json',
+  '.json': 'application/json',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.svg': 'image/svg+xml',
+  '.ico': 'image/x-icon',
+  '.txt': 'text/plain',
+  '.xml': 'application/xml'
+};
 const http = require('http');
 
 const PORT = process.env.PORT || 3000;
