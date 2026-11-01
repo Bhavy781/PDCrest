@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PDCrest | Anger management and personality development app</title>
+<meta name="description" content="PDCrest helps you build calm, confidence, and kindness with 20 rounds of short games, an AI mentor named Super, and daily rewards.">
+<link rel="canonical" href="https://YOUR-SITE.onrender.com/">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="PDCrest">
+<meta name="theme-color" content="#2A0912">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PDCrest">
+<meta property="og:title" content="PDCrest | Anger management and personality development app">
+<meta property="og:description" content="20 rounds of short games, an AI mentor named Super, and daily rewards to help you grow calmer and more confident.">
+<meta property="og:url" content="https://YOUR-SITE.onrender.com/">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"PDCrest","url":"https://YOUR-SITE.onrender.com/","description":"A personality development and anger management app with 20 rounds of short games, an AI mentor named Super, and daily rewards.","applicationCategory":"EducationalApplication","operatingSystem":"Any","inLanguage":"en-IN","offers":{"@type":"Offer","price":"1500","priceCurrency":"INR"}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFFFFF;--text:#4A1030;--accent:#D81B72;--accent2:#F48FB1;--sun:#FFC857;--muted:#7A4A62;--line:#F8BBD0;--tint:#FFF0F6;--on:#FFFFFF;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2A0912;--text:#FCE9F1;--accent:#FF7EB3;--accent2:#B84C7A;--muted:#D3B2C2;--line:#5E2438;--tint:#3A1220;--on:#2A0912}}
+:root[data-theme="dark"]{--bg:#2A0912;--text:#FCE9F1;--accent:#FF7EB3;--accent2:#B84C7A;--muted:#D3B2C2;--line:#5E2438;--tint:#3A1220;--on:#2A0912}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.6 'Poppins',system-ui,sans-serif}
+a{color:inherit}:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+.brush{font-family:'Caveat Brush','Brush Script MT',cursive;font-weight:400;color:var(--accent);margin:0;line-height:1}
+h1.brush{font-size:clamp(56px,10vw,112px)}h2.brush{font-size:clamp(36px,5.5vw,56px);margin-bottom:20px}h3.brush{font-size:28px}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:14px;padding-bottom:14px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none}.logo .brush{font-size:36px}
+nav{display:flex;gap:6px 18px;font-weight:600;font-size:14px;flex-wrap:wrap}nav a{text-decoration:none;color:var(--muted)}nav a:hover,nav a.on{color:var(--accent)}
+.stats{background:var(--tint);border-bottom:1px solid var(--line);font-size:14px}.stats .wrap{display:flex;gap:6px 22px;padding-top:8px;padding-bottom:8px;flex-wrap:wrap}
+.pill{font-weight:600}.pill b{color:var(--accent)}
+.btn{display:inline-block;padding:11px 22px;border-radius:999px;font:600 15px 'Poppins',sans-serif;text-decoration:none;border:2px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer}
+.btn.main{background:var(--accent);color:var(--on)}.btn:disabled{opacity:.45;cursor:not-allowed}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.hero{display:grid;grid-template-columns:1.4fr 1fr;gap:28px;align-items:center;padding:48px 0 64px}
+.hero p{color:var(--muted);font-size:18px;max-width:32em;margin:18px 0 26px}
+.sec{padding:48px 0;border-top:1px solid var(--line)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.grid3>div,.grid2>div{padding-top:14px;border-top:3px solid var(--accent2)}
+.card{background:var(--tint);border:1px solid var(--line);border-radius:18px;padding:20px}
+.muted{color:var(--muted)}.small{font-size:13px}
+.rounds{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.rd{border:2px solid var(--line);border-radius:16px;padding:14px;text-decoration:none;display:block;background:var(--bg)}
+.rd.lock{opacity:.5}.rd.done{border-color:var(--accent);background:var(--tint)}
+.bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;background:var(--accent)}
+.topic{border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.g{padding:6px 14px;font-size:13px}.g.d{background:var(--accent);color:var(--on)}
+.opt{display:block;width:100%;text-align:left;margin:8px 0;padding:12px 16px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--text);font:400 16px 'Poppins',sans-serif;cursor:pointer}
+.opt:hover{border-color:var(--accent)}
+input,textarea,select{width:100%;padding:11px 14px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--text);font:400 16px 'Poppins',sans-serif}
+.chat{max-height:380px;overflow:auto;display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
+.m{padding:10px 14px;border-radius:16px;max-width:85%;white-space:pre-wrap}.m.u{align-self:flex-end;background:var(--accent);color:var(--on)}.m.s{background:var(--tint);border:1px solid var(--line)}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.plan.hot{border-color:var(--accent);border-width:3px}
+.price{font-family:'Caveat Brush',cursive;font-size:48px;color:var(--accent);line-height:1}.was{text-decoration:line-through;color:var(--muted);font-size:18px}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--accent);color:var(--on);padding:12px 22px;border-radius:999px;font-weight:600;z-index:9}
+.tut{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center}
+footer{padding:32px 0 48px;color:var(--muted);font-size:13px}
+@media (max-width:760px){.hero,.grid3,.grid2,.plans,.tut{grid-template-columns:1fr}}
+
+.land{--bg:#2A0912;--text:#FCE9F1;--accent:#FF7EB3;--accent2:#C0507E;--muted:#D9B8C6;--line:#5E2438;--tint:#3A1220;--on:#2A0912;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+.land h1.brush{font-size:clamp(64px,13vw,160px);line-height:.9}
+.land .top{display:flex;justify-content:space-between;align-items:center;padding:18px 0;gap:12px}
+.mq{overflow:hidden;border-block:1px solid var(--line);padding:12px 0;white-space:nowrap}
+.mq div{display:inline-block;animation:mq 30s linear infinite;font-family:'Caveat Brush',cursive;font-size:44px;color:var(--accent)}
+@keyframes mq{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.mq div{animation:none}}
+.nums b{display:block;font-family:'Caveat Brush',cursive;font-weight:400;font-size:clamp(56px,9vw,112px);color:var(--accent);line-height:1}
+.mock{border:1px solid var(--line);border-radius:28px;background:var(--tint);padding:22px;max-width:360px;margin-left:auto}
+.mock .m{max-width:100%}
+.land .hero{padding:40px 0 72px}
+@media (max-width:760px){.mock{margin:0}}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.26.4/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<noscript><main style="font-family:sans-serif;max-width:640px;margin:40px auto;padding:0 20px"><h1>PDCrest: stay calm, grow stronger</h1><p>Twenty rounds of short games that build calm, confidence, and kindness, with Super, your AI mentor. Please turn on JavaScript to use PDCrest.</p></main></noscript>
+<script type="text/babel">
+const { useEffect, useLayoutEffect, useRef, useState } = React;
+const { gsap, ScrollTrigger } = window;
+gsap.registerPlugin(ScrollTrigger);
+const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
+const WIPES = {
+  up: 'linear-gradient(to top, #000 calc(var(--ac-wipe) * 140% - 40%), transparent calc(var(--ac-wipe) * 140%))',
+  down: 'linear-gradient(to bottom, #000 calc(var(--ac-wipe) * 140% - 40%), transparent calc(var(--ac-wipe) * 140%))',
+  left: 'linear-gradient(to left, #000 calc(var(--ac-wipe) * 140% - 40%), transparent calc(var(--ac-wipe) * 140%))',
+  right: 'linear-gradient(to right, #000 calc(var(--ac-wipe) * 140% - 40%), transparent calc(var(--ac-wipe) * 140%))',
+  center: 'radial-gradient(farthest-corner at 50% 50%, #000 calc(var(--ac-wipe) * 140% - 40%), transparent calc(var(--ac-wipe) * 140%))'
+};
+const AnimatedContent = ({
+  children, container, distance = 100, direction = 'vertical', reverse = false, duration = 0.8,
+  ease = 'power3.out', initialOpacity = 0, animateOpacity = true, scale = 1, blur = 0, rotate = 0,
+  tilt = 0, wipe = 'none', threshold = 0.1, delay = 0, stagger = 0, staggerFrom = 'start',
+  trigger = 'scroll', once = true, scrub = false, disappearAfter = 0, disappearDuration = 0.5,
+  disappearEase = 'power3.in', onStart, onComplete, onDisappearanceComplete, className = '', style, ...props
+}) => {
+  const ref = useRef(null);
+  const callbacksRef = useRef({ onStart, onComplete, onDisappearanceComplete });
+  callbacksRef.current = { onStart, onComplete, onDisappearanceComplete };
+  useIsomorphicLayoutEffect(() => {
+    const el = ref.current;
+    if (!el) return undefined;
+    let scroller = container || document.getElementById('snap-main-container') || null;
+    if (typeof scroller === 'string') scroller = document.querySelector(scroller);
+    const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+    const ctx = gsap.context(() => {
+      const targets = stagger > 0 && el.children.length ? Array.from(el.children) : [el];
+      const horizontal = direction === 'horizontal';
+      const axis = horizontal ? 'x' : 'y';
+      const sign = reverse ? -1 : 1;
+      const mask = WIPES[wipe];
+      gsap.set(el, { visibility: 'visible' });
+      if (reduce) { callbacksRef.current.onComplete?.(); return; }
+      const from = { [axis]: distance * sign, scale, opacity: animateOpacity ? initialOpacity : 1 };
+      const to = { [axis]: 0, scale: 1, opacity: 1, duration, ease };
+      if (blur > 0) { from.filter = `blur(${blur}px)`; to.filter = 'blur(0px)'; }
+      if (rotate) { from.rotation = rotate * sign; to.rotation = 0; }
+      if (tilt) {
+        const tiltAxis = horizontal ? 'rotationY' : 'rotationX';
+        from[tiltAxis] = horizontal ? -tilt * sign : tilt * sign; to[tiltAxis] = 0;
+        from.transformPerspective = 900; to.transformPerspective = 900;
+      }
+      if (mask) { gsap.set(targets, { maskImage: mask, webkitMaskImage: mask }); from['--ac-wipe'] = 0; to['--ac-wipe'] = 1; }
+      if (stagger > 0) to.stagger = { each: stagger, from: staggerFrom };
+      const settle = () => { if (scrub) return; gsap.set(targets, { clearProps: mask ? 'filter,transform,maskImage,webkitMaskImage' : 'filter,transform' }); };
+      const disappear = () => {
+        if (disappearAfter <= 0) return;
+        const out = { [axis]: -distance * sign, scale: 0.8, opacity: animateOpacity ? initialOpacity : 0, delay: disappearAfter, duration: disappearDuration, ease: disappearEase, onComplete: () => callbacksRef.current.onDisappearanceComplete?.() };
+        if (blur > 0) out.filter = `blur(${blur}px)`;
+        if (stagger > 0) out.stagger = { each: stagger, from: staggerFrom };
+        gsap.to(targets, out);
+      };
+      const tl = gsap.timeline({ paused: true, onStart: () => callbacksRef.current.onStart?.(),
+        onComplete: () => { callbacksRef.current.onComplete?.(); settle(); if (once && !scrub) disappear(); } });
+      tl.fromTo(targets, from, to, scrub ? 0 : Math.max(delay, 0));
+      if (trigger === 'mount') { tl.play(); return; }
+      const start = `top ${(1 - threshold) * 100}%`;
+      if (scrub) {
+        ScrollTrigger.create({ trigger: el, scroller, start, end: `top ${Math.max((1 - threshold) * 100 - 45, 5)}%`, scrub: scrub === true ? true : Math.max(Number(scrub) || 0, 0.01), animation: tl });
+        return;
+      }
+      ScrollTrigger.create({ trigger: el, scroller, start, once, onEnter: () => tl.play(),
+        onLeaveBack: once ? undefined : () => { if (mask) gsap.set(targets, { maskImage: mask, webkitMaskImage: mask }); tl.reverse(); } });
+    }, el);
+    return () => ctx.revert();
+  }, [container, distance, direction, reverse, duration, ease, initialOpacity, animateOpacity, scale, blur, rotate, tilt, wipe, threshold, delay, stagger, staggerFrom, trigger, once, scrub, disappearAfter, disappearDuration, disappearEase]);
+  return (<div ref={ref} className={className} style={{ visibility: 'hidden', ...style }} {...props}>{children}</div>);
+};
+
+/* ---------- Round data: 20 rounds x 6 topics x 3 games ---------- */
+const NAMES = ['Know yourself','Name your feelings','Pause and breathe','Understand anger','Calm thinking','Self-confidence','Assertive speech','Listening','Empathy','Handling criticism','Handling conflict','Habits and routine','Stress and sleep','Resilience','Responsibility','Respect and manners','Teamwork','Leadership','Gratitude and positivity','Your personality plan'];
+const TIPS = ['Notice what you feel before you act','Put a word to the feeling','Pause for ten seconds before you reply','Spot your early warning signs','Question the first thought','Celebrate small wins','Say what you need using I-statements','Listen fully before you reply','Imagine the other person’s side','Ask what you can learn','Cool down first, then talk','Repeat small healthy habits daily','Protect your sleep and rest','Treat setbacks as practice','Own the mistake and fix it','Show respect even when upset','Share credit and help others','Stay calm and lead by example','Write down three good things','Choose one habit to keep growing'];
+const PRACT = ['Write down how you feel right now','Name your feeling in one word','Take five slow breaths','Note one body sign of anger today','Rewrite one harsh thought kindly','Do one thing you are proud of','Say one I-statement to someone','Listen to someone for two minutes without interrupting','Ask someone about their day and truly listen','Thank someone for honest feedback','Step away for a minute during a disagreement','Do your chosen habit for ten minutes','Go to bed fifteen minutes earlier','Write what a setback taught you','Own up to one small mistake','Greet someone warmly','Credit a teammate out loud','Help someone without being asked','Write three things you are grateful for','Write one promise to your future self'];
+const TOPICS = [
+['Self-awareness','Personal values','Strengths','Weaknesses','Habits you repeat','Blind spots'],
+['Feeling words','Anger vs hurt','Fear and worry','Joy and pride','Mixed emotions','Mood check-ins'],
+['Ten-second pause','Slow breathing','Body signals','Counting back','Stepping away','Calm spaces'],
+['Your triggers','Warning signs','Anger myths','Anger and stress','Anger and sleep','After an outburst'],
+['Spotting assumptions','Reframing','Worst-case thoughts','Fair judgments','Self-talk','Letting go'],
+['Self-worth','Small wins','Handling mistakes','Positive self-talk','Body language','Comparing less'],
+['I-statements','Saying no','Asking for help','Tone of voice','Clear requests','Setting boundaries'],
+['Active listening','Not interrupting','Asking questions','Reading cues','Paraphrasing','Patience'],
+['Other viewpoints','Kindness','Reading emotions','Giving support','Avoiding judgment','Forgiveness'],
+['Receiving feedback','Not defending','Learning from critics','Separating self from work','Giving feedback','Staying humble'],
+['Calm disagreement','Common ground','Apologising well','Cooling down first','Family conflict','Workplace conflict'],
+['Morning routine','Daily planning','Exercise','Screen time','Healthy eating','Consistency'],
+['Stress sources','Sleep habits','Relaxation','Time pressure','Work-life balance','Asking for rest'],
+['Bouncing back','Handling failure','Staying patient','Facing fear','Growth mindset','Seeking support'],
+['Owning mistakes','Keeping promises','Being on time','Honesty','Self-discipline','Making amends'],
+['Greeting well','Public behaviour','Road courtesy','Online etiquette','Respecting elders','Respecting differences'],
+['Sharing credit','Cooperation','Trust','Team communication','Handling disagreement','Supporting others'],
+['Leading by example','Decision-making','Motivating others','Calm under pressure','Delegating','Taking feedback'],
+['Thankfulness','Optimism','Celebrating others','Joy in routine','Kind words','Letting go of grudges'],
+['Review your growth','Top strengths','Habits to keep','Goals ahead','Support network','Promise to yourself']];
+const ROUNDS = NAMES.map((n, i) => ({ n, tip: TIPS[i], pr: PRACT[i], t: TOPICS[i] }));
+const GAMES = ['Quiz (10 questions)', 'Real-life scenarios (3)', 'Practice (2 tasks)'];
+const XPG = [20, 15, 15];
+const key = (r, t, g) => `${r}.${t}.${g}`;
+const roundDone = (s, r) => s.skipped[r] || ROUNDS[r].t.every((_, t) => [0, 1, 2].every(g => s.done[key(r, t, g)]));
+const doneCount = (s, r) => ROUNDS[r].t.reduce((a, _, t) => a + [0, 1, 2].filter(g => s.done[key(r, t, g)]).length, 0);
+const isPro = s => Date.now() < s.proUntil;
+const freeOk = (s, r) => isPro(s) || (r < 3 && (!s.start || Date.now() < s.start + 12 * 36e5));
+const unlocked = (s, r) => freeOk(s, r) && (r === 0 || roundDone(s, r - 1));
+
+/* ---------- Festival discount: 12%, active for at most 15 days ---------- */
+const FEST = [['Diwali', '2026-11-08'], ['Christmas', '2026-12-25'], ['Makar Sankranti', '2027-01-14'], ['Holi', '2027-03-22']];
+const BASE = 1500, OFF = 0.12, DAY = 864e5;
+const festStatus = () => {
+  const now = Date.now();
+  for (const [n, d] of FEST) { const st = new Date(d + 'T00:00:00').getTime(), en = st + 15 * DAY; if (now >= st && now < en) return { on: true, n, left: Math.ceil((en - now) / DAY) }; }
+  const nx = FEST.map(([n, d]) => [n, new Date(d + 'T00:00:00').getTime()]).find(([, st]) => st > now);
+  return nx ? { on: false, n: nx[0], in: Math.ceil((nx[1] - now) / DAY) } : { on: false };
+};
+const inr = n => '₹' + Math.round(n).toLocaleString('en-IN');
+
+/* ---------- State ---------- */
+const FRESH = { xp: 0, gems: 0, streak: 0, last: '', done: {}, skipped: {}, chests: 0, proUntil: 0, user: null, keys: [] };
+const load = () => { try { return { ...FRESH, ...JSON.parse(localStorage.getItem('pdc') || '{}') }; } catch (e) { return { ...FRESH }; } };
+const save = s => { try { localStorage.setItem('pdc', JSON.stringify(s)); } catch (e) {} };
+const dayStr = d => d.toISOString().slice(0, 10);
+
+const Mark = ({ size = 48 }) => (
+  <svg width={size} height={size * 0.7} viewBox="0 0 200 140" role="img" aria-label="PDCrest crest mark">
+    <path d="M95 130 L145 62 L195 130 Z" fill="var(--accent2)" /><path d="M10 130 L85 30 L160 130 Z" fill="var(--accent)" /><circle cx="150" cy="26" r="13" fill="var(--sun)" />
+  </svg>
+);
+
+/* ---------- Pages ---------- */
+const Landing = () => {
+  const steps = ['Sign in with WhatsApp or Google', 'Pick a round and a topic', 'Play short games on each topic', 'Ask Super, your AI mentor, for help', 'Earn a reward: Pro for 6 days or a round skip'];
+  const [i, setI] = useState(0), [play, setPlay] = useState(true), vid = useRef(null);
+  useEffect(() => { if (!play) return; const t = setInterval(() => setI(x => (x + 1) % steps.length), 3000); return () => clearInterval(t); }, [play]);
+  const words = 'Calm · Confidence · Kindness · Patience · Focus · Respect · Resilience · Leadership · ';
+  return (<div className="land">
+    <div className="wrap">
+      <div className="top"><a className="logo" href="#home" aria-label="PDCrest home"><Mark size={52} /><span className="brush" style={{ fontSize: 38 }}>PDCrest</span></a><a className="btn main" href="#dashboard">Open dashboard</a></div>
+      <div className="hero">
+        <div>
+          <AnimatedContent trigger="mount" distance={70} blur={12} duration={1.1}><h1 className="brush">Stay calm. Grow stronger.</h1></AnimatedContent>
+          <AnimatedContent trigger="mount" distance={30} delay={0.3}>
+            <p>PDCrest turns personality development into 20 rounds of short games, with Super, your AI mentor, cheering you on.</p>
+            <div className="row"><a className="btn main" href="#dashboard">Start round 1</a><button className="btn" onClick={() => vid.current && vid.current.scrollIntoView({ behavior: 'smooth' })}>Watch the walkthrough</button></div>
+          </AnimatedContent>
+        </div>
+        <AnimatedContent trigger="mount" distance={50} scale={0.9} delay={0.2} duration={1.1} ease="back.out(1.3)">
+          <div className="mock"><div className="muted small">Round 3 · Pause and breathe</div><h3 className="brush" style={{ margin: '6px 0 10px' }}>Ten-second pause</h3>
+            <div className="bar"><i style={{ width: '66%' }} /></div><div className="small muted" style={{ margin: '6px 0 14px' }}>2 of 3 games done</div>
+            <div className="m s">Super: Feeling tense? Take five slow breaths, then reply.</div></div>
+        </AnimatedContent>
+      </div>
+    </div>
+    <div className="mq" aria-hidden="true"><div>{words}{words}</div></div>
+    <section className="sec" style={{ borderTop: 0 }}><div className="wrap">
+      <AnimatedContent className="grid3 nums" stagger={0.12} distance={60} blur={8}>
+        <div><b>{ROUNDS.length}</b><span className="muted">rounds</span></div>
+        <div><b>{ROUNDS.length * 6}</b><span className="muted">topics</span></div>
+        <div><b>{ROUNDS.length * 18}</b><span className="muted">games</span></div>
+      </AnimatedContent>
+    </div></section>
+    <section className="sec"><div className="wrap">
+      <AnimatedContent distance={40}><h2 className="brush">Built to change habits</h2></AnimatedContent>
+      <AnimatedContent className="grid3" stagger={0.12} distance={50} blur={6}>
+        <div><h3 className="brush">Play your way up</h3><p className="muted">Finish a round to unlock the next. Each topic has a quiz, real-life scenarios, and practice tasks.</p></div>
+        <div><h3 className="brush">Super, your AI mentor</h3><p className="muted">Ask for advice, rehearse a hard conversation, or talk through a rough day.</p></div>
+        <div><h3 className="brush">Rewards that matter</h3><p className="muted">Earn XP, gems, and streaks. Each finished round lets you pick Pro for 6 days or a round skip.</p></div>
+      </AnimatedContent>
+    </div></section>
+    <section className="sec" ref={vid}><div className="wrap">
+      <AnimatedContent distance={40}><h2 className="brush">See it in action</h2></AnimatedContent>
+      <AnimatedContent wipe="left" distance={0} duration={1.1}>
+        <div className="grid2 card">
+          <div><div className="muted small">Walkthrough: step {i + 1} of {steps.length}</div><h3 className="brush" style={{ margin: '6px 0 12px' }}>{steps[i]}</h3>
+            <div className="bar"><i style={{ width: ((i + 1) / steps.length * 100) + '%' }} /></div>
+            <div className="row" style={{ marginTop: 14 }}><button className="btn g" onClick={() => setPlay(!play)}>{play ? 'Pause' : 'Play'}</button><button className="btn g" onClick={() => setI((i + 1) % steps.length)}>Next step</button></div></div>
+          <div className="muted">An animated walkthrough of a learner using the app. A recorded video can replace this later.</div>
+        </div>
+      </AnimatedContent>
+    </div></section>
+    <section className="sec"><div className="wrap" style={{ textAlign: 'center' }}>
+      <AnimatedContent distance={50} blur={8}><h2 className="brush" style={{ fontSize: 'clamp(48px,9vw,104px)' }}>Ready for round 1?</h2><p className="muted">Free for 12 hours, rounds 1 to 3. Pro unlocks all 20.</p><a className="btn main" href="#dashboard">Open dashboard</a></AnimatedContent>
+    </div></section>
+    <footer><div className="wrap">PDCrest offers general guidance and is not a substitute for medical or psychological advice. In India, Tele-MANAS (14416) is free and open 24x7.</div></footer>
+  </div>);
+};
+
+const Dash = ({ s }) => {
+  const total = ROUNDS.length * 18, done = ROUNDS.reduce((a, _, i) => a + doneCount(s, i), 0);
+  const cur = ROUNDS.findIndex((_, i) => unlocked(s, i) && !roundDone(s, i));
+  return (<div className="wrap sec" style={{ borderTop: 0 }}>
+    <AnimatedContent trigger="mount" distance={30}><h2 className="brush">Your dashboard</h2></AnimatedContent>
+    <AnimatedContent className="grid3" stagger={0.1} distance={40}>
+      <div><h3 className="brush">Level {Math.floor(s.xp / 100) + 1}</h3><p className="muted">{s.xp} XP in total.</p></div>
+      <div><h3 className="brush">{s.streak}-day streak</h3><p className="muted">Play one game a day to keep it going.</p></div>
+      <div><h3 className="brush">{s.gems} gems</h3><p className="muted">{s.chests} reward chest{s.chests === 1 ? '' : 'es'} waiting.</p></div>
+    </AnimatedContent>
+    <div className="card" style={{ marginTop: 28 }}><div className="muted small">Overall progress</div>
+      <h3 className="brush">{done} of {total} games done</h3><div className="bar"><i style={{ width: (done / total * 100) + '%' }} /></div>
+      <p className="muted small">{isPro(s) ? 'Plan: Pro until ' + new Date(s.proUntil).toLocaleDateString('en-IN') : 'Plan: Free (rounds 1 to 3, 12 hours from your first game)'}</p>
+      <div className="row">{cur >= 0 ? <a className="btn main" href={'#round-' + (cur + 1)}>Continue round {cur + 1}: {ROUNDS[cur].n}</a> : <a className="btn main" href="#rounds">View rounds</a>}<a className="btn" href="#super">Ask Super</a>{s.chests > 0 && <a className="btn" href="#rewards">Open a chest</a>}</div></div>
+  </div>);
+};
+
+const Rounds = ({ s }) => (
+  <div className="wrap sec" style={{ borderTop: 0 }}>
+    <AnimatedContent trigger="mount" distance={40}><h2 className="brush">Your 20 rounds</h2></AnimatedContent>
+    <p className="muted small">Free plan: rounds 1 to 3 for 12 hours from your first game. Pro unlocks all 20.</p>
+    <AnimatedContent className="rounds" stagger={0.04} distance={40} threshold={0.05}>
+      {ROUNDS.map((r, i) => { const ok = unlocked(s, i), d = roundDone(s, i), c = doneCount(s, i); return (
+        <a key={i} className={'rd' + (ok ? '' : ' lock') + (d ? ' done' : '')} href={ok ? '#round-' + (i + 1) : '#rounds'} aria-disabled={!ok}>
+          <div className="muted small">Round {i + 1}{ok ? '' : ' (locked)'}</div><div className="brush" style={{ fontSize: 26 }}>{r.n}</div>
+          <div className="bar"><i style={{ width: (s.skipped[i] ? 100 : c / 18 * 100) + '%' }} /></div><div className="small muted">{s.skipped[i] ? 'Skipped' : c + ' / 18 games'}</div></a>); })}
+    </AnimatedContent>
+  </div>
+);
+
+const QUIZ = (T, P) => [
+  [`Which action best builds “${T}”?`, P, 'React first and think later', 'Avoid the situation completely'],
+  [`You feel anger rising while practising “${T}”. What is a good first step?`, 'Pause and breathe slowly', 'Say the first thing that comes to mind', 'Walk away silently and sulk'],
+  [`True or false: you can improve “${T}” with regular practice.`, 'True', 'False'],
+  [`Which habit supports “${T}” over time?`, 'Practising a little every day', 'Trying once and giving up', 'Waiting until you feel perfect'],
+  [`A friend struggles with “${T}”. What helps most?`, 'Listen kindly and share one small step', 'Tell them to just stop', 'Laugh at their attempts'],
+  [`You slip up on “${T}”. What is the best response?`, 'Notice it, learn from it, and try again', 'Blame someone else', 'Decide you can never change'],
+  [`Why does “${T}” matter for your personality?`, 'It shapes how you treat people and yourself', 'It only matters at work', 'It does not matter if you feel fine'],
+  [`Which is a sign you are doing well with “${T}”?`, 'You respond calmly more often than before', 'You never feel angry', 'You win every argument'],
+  [`Which should you avoid while building “${T}”?`, 'Reacting in the heat of the moment', 'Taking a short break', 'Asking for feedback'],
+  [`What is the best way to track progress in “${T}”?`, 'Write a short note each day on what worked', 'Rely on memory alone', 'Compare yourself with others']];
+const SCEN = T => [
+  [`Someone upsets you at work. Practising “${T}”, what do you do?`, 'Pause, breathe, then respond calmly', 'Raise your voice so they understand', 'Say nothing and stay resentful'],
+  [`A family member criticises you in front of others. Practising “${T}”, you…`, 'Take a breath, then say calmly how it made you feel', 'Snap back to win the argument', 'Leave and give them the silent treatment'],
+  [`You are stuck in traffic and running late. Practising “${T}”, you…`, 'Breathe slowly, stay patient, and drive safely', 'Honk and shout at other drivers', 'Drive aggressively to make up time']];
+const TASKS = (T, pr) => [pr + '.', `Spend two minutes reflecting on “${T}” and write one thing you will do differently today.`];
+
+const CUSTOM = { '0.5': {
+  quiz: [
+    ['What is a blind spot in personality?', 'A habit or trait others notice in you that you don’t', 'A skill you are proud of', 'A mistake you made once and fixed'],
+    ['Which is the best way to find your blind spots?', 'Ask people you trust for honest feedback', 'Wait until you notice them yourself', 'Assume you have none'],
+    ['A colleague says you often interrupt. What is your best first response?', 'Thank them and ask for an example', 'Explain why they are wrong', 'Stop talking to them'],
+    ['Why are blind spots hard to see?', 'We judge ourselves by our intentions, not by the effect on others', 'Because they are rare', 'Because they only appear at work'],
+    ['True or false: everyone has blind spots.', 'True', 'False'],
+    ['Which question helps uncover a blind spot?', '“How do I come across when I’m stressed?”', '“Why is everyone else wrong?”', '“How can I avoid hearing criticism?”'],
+    ['Three different people give you similar feedback. You should…', 'Take it seriously as a possible pattern', 'Ignore it as a coincidence', 'Argue with all three'],
+    ['Defensive reactions to feedback usually…', 'Keep the blind spot hidden', 'Help you grow quickly', 'Make others trust you more'],
+    ['Which is a common anger-related blind spot?', 'Not noticing that your tone has turned sharp', 'Feeling calm all the time', 'Always listening fully'],
+    ['How can a daily journal help with blind spots?', 'It reveals repeated patterns in your reactions', 'It replaces feedback entirely', 'It makes triggers disappear'],
+    ['When someone gives you feedback, the best listening habit is to…', 'Listen fully and ask questions before replying', 'Prepare your defence while they talk', 'Look at your phone'],
+    ['A friend says you go quiet and cold when upset. This is…', 'Useful information about your impact', 'An attack on your character', 'Proof that your friend is oversensitive'],
+    ['Which comparison is the healthiest?', 'Comparing yourself with who you were last month', 'Comparing yourself with the person you envy most', 'Avoiding both comparison and feedback'],
+    ['What should you do after learning about a blind spot?', 'Pick one small change and practise it', 'Feel guilty for a week', 'Pretend you always knew'],
+    ['Which statement shows ownership?', '“I see how that landed badly. I’ll work on it.”', '“I was only joking.”', '“You’re too sensitive.”'],
+    ['Why ask for feedback from family, friends, and colleagues?', 'Each sees you in different situations', 'They all see exactly the same thing', 'It makes feedback easier to ignore'],
+    ['Which feedback request is the most useful?', '“What is one thing I could do better?”', '“I’m great, right?”', '“You don’t have any complaints, do you?”'],
+    ['Strong emotions like anger tend to make blind spots…', 'Bigger, because we think less clearly', 'Smaller, because we notice more', 'Disappear completely'],
+    ['What does “impact over intent” mean?', 'What others experience matters, not just what you meant', 'Only your intentions count', 'Only results at work matter'],
+    ['What is a sign you are getting better at spotting blind spots?', 'You catch patterns sooner and adjust', 'You never receive feedback', 'You feel nothing when criticised']],
+  scen: [
+    ['A teammate says in a meeting that you often cut others off. Your face feels hot. What do you do?', 'Take a breath, thank them, and ask for an example', 'Defend yourself and list their mistakes', 'Stay silent and avoid them afterwards'],
+    ['Your sibling says you only talk about your own problems. It feels unfair. What do you do?', 'Pause and ask what they have noticed, then reflect', 'Say they never listen to you either', 'End the conversation and leave'],
+    ['Two friends separately tell you that you sound harsh when you are stressed. What do you do?', 'Treat it as a pattern, ask for examples, and try a calmer tone', 'Decide they are both overreacting', 'Blame stress and change nothing'],
+    ['Your manager says your work is good but you seem to dismiss others’ ideas. What do you do?', 'Ask for specific moments and plan one change', 'Argue that your ideas are simply better', 'Smile and ignore it']] } };
+
+const Round = ({ r, s, award, toast }) => {
+  const R = ROUNDS[r], [a, setA] = useState(null), [msg, setMsg] = useState('');
+  if (!unlocked(s, r)) return <div className="wrap sec"><p>{freeOk(s, r) ? `Finish round ${r} first, or use a round skip from Rewards.` : 'The free plan covers rounds 1 to 3 for 12 hours from your first game. Choose Pro on the Pricing page, or earn 6 days of Pro as a reward, to continue.'}</p></div>;
+  const T = a ? R.t[a.t] : '', cu = a ? CUSTOM[r + '.' + a.t] : null, items = a ? (a.g === 0 ? (cu ? cu.quiz : QUIZ(T, R.tip)) : a.g === 1 ? (cu ? cu.scen : SCEN(T)) : TASKS(T, R.pr)) : [], n = items.length, it = a ? items[a.i] : null;
+  const next = () => { if (a.i + 1 >= n) { award(r, a.t, a.g); setA(null); } else setA({ ...a, i: a.i + 1 }); setMsg(''); };
+  const opts = a && a.g < 2 ? (() => { const o = it.slice(1), k = (r + a.t + a.i) % o.length; return o.map((_, j) => o[(j + k) % o.length]); })() : [];
+  const lab = ['Question', 'Scenario', 'Task'];
+  return (<div className="wrap sec" style={{ borderTop: 0 }}>
+    <a href="#rounds" className="muted small">Back to rounds</a>
+    <AnimatedContent trigger="mount" distance={30}><h2 className="brush">Round {r + 1}: {R.n}</h2></AnimatedContent>
+    {a ? (<div className="card"><div className="muted small">{T} · {lab[a.g]} {a.i + 1} of {n}</div>
+      <div className="bar"><i style={{ width: (a.i / n * 100) + '%' }} /></div>
+      {a.g < 2 ? (<><h3 className="brush" style={{ margin: '12px 0 8px' }}>{it[0]}</h3>
+        {opts.map(o => <button key={o} className="opt" onClick={() => o === it[1] ? next() : setMsg('Not quite. Try again.')}>{o}</button>)}<div role="status" className="muted">{msg}</div></>)
+        : (<><h3 className="brush" style={{ margin: '12px 0 8px' }}>{a.i === 0 ? 'Try it now: ' : 'Then: '}{it}</h3><p className="muted">Do it for real, then confirm. Honest practice is what changes habits.</p><button className="btn main" onClick={next}>I did it</button></>)}
+      <button className="btn g" style={{ marginTop: 12 }} onClick={() => { setA(null); setMsg(''); }}>Close</button></div>)
+    : R.t.map((tp, ti) => (<div className="topic" key={ti}><b>{ti + 1}. {tp}</b><div className="row">{GAMES.map((gn, gi) => <button key={gi} className={'btn g' + (s.done[key(r, ti, gi)] ? ' d' : '')} onClick={() => { setA({ t: ti, g: gi, i: 0 }); setMsg(''); }}>{CUSTOM[r + '.' + ti] ? ['Quiz (20 questions)', 'Real-life scenarios (4)', gn][gi] : gn}</button>)}</div></div>))}
+  </div>);
+};
+
+const Super = () => {
+  const [m, setM] = useState([{ r: 's', t: 'Hi, I’m Super, your PDCrest mentor. Tell me what happened today, or ask how to handle a tough moment.' }]);
+  const [v, setV] = useState(''), [busy, setBusy] = useState(false);
+  const send = async () => {
+    const q = v.trim(); if (!q || busy) return; setV(''); setBusy(true);
+    const hist = [...m, { r: 'u', t: q }]; setM([...hist, { r: 's', t: '' }]);
+    try {
+      const sample = await claude.use('sample'); if (!sample) throw new Error('none');
+      const prompt = 'You are Super, the friendly AI mentor in PDCrest, an app for personality development and anger management for users in India. Reply in 2-4 short, warm, practical sentences with one concrete step. You are not a doctor. If the user mentions self-harm or hurting someone, urge them to contact Tele-MANAS (14416) or local emergency services.\n\nConversation:\n' + hist.map(x => (x.r === 'u' ? 'User: ' : 'Super: ') + x.t).join('\n') + '\nSuper:';
+      const out = await sample(prompt, { cache: false, onText: ({ text }) => setM([...hist, { r: 's', t: text }]) });
+      setM([...hist, { r: 's', t: out.text }]);
+    } catch (e) { setM([...hist, { r: 's', t: 'I can’t reach my brain right now. Try again in a moment. Meanwhile, take five slow breaths.' }]); }
+    setBusy(false);
+  };
+  return (<div className="wrap sec" style={{ borderTop: 0, maxWidth: 720 }}>
+    <AnimatedContent trigger="mount" distance={30}><h2 className="brush">Super, your AI mentor</h2></AnimatedContent>
+    <div className="card"><div className="chat" role="log" aria-live="polite">{m.map((x, i) => <div key={i} className={'m ' + x.r}>{x.t || '…'}</div>)}</div>
+      <div className="row"><input aria-label="Message Super" value={v} placeholder="What’s on your mind?" onChange={e => setV(e.target.value)} onKeyDown={e => e.key === 'Enter' && send()} style={{ flex: 1 }} /><button className="btn main" disabled={busy} onClick={send}>Send</button></div></div>
+    <p className="muted small">Super gives general guidance, not medical advice. In India, Tele-MANAS (14416) is free and open 24x7.</p>
+  </div>);
+};
+
+const Rewards = ({ s, upd, toast }) => {
+  const [rate, setRate] = useState(5), [txt, setTxt] = useState('');
+  const pro = Date.now() < s.proUntil;
+  const claim = k => { if (s.chests < 1) return; upd(p => { p.chests--; if (k === 'pro') p.proUntil = Math.max(Date.now(), p.proUntil) + 6 * DAY; else p.skip = (p.skip || 0) + 1; return p; }); toast(k === 'pro' ? 'Pro unlocked for 6 days' : 'Round skip added'); };
+  const useSkip = () => { const r = ROUNDS.findIndex((_, i) => unlocked(s, i) && !roundDone(s, i)); if (r < 0 || !(s.skip > 0)) return; upd(p => { p.skip--; p.skipped = { ...p.skipped, [r]: 1 }; return p; }); toast('Skipped round ' + (r + 1)); };
+  const send = async () => { try { const db = await claude.use('db'), u = await claude.use('user'); if (!db || !u) throw 0; await db.collection('responses').doc(await u.id()).set({ rating: rate, text: txt.slice(0, 500), at: Date.now() }); setTxt(''); toast('Thanks for your feedback'); } catch (e) { toast('Feedback needs you to be signed in to claude.ai'); } };
+  return (<div className="wrap sec" style={{ borderTop: 0 }}>
+    <AnimatedContent trigger="mount" distance={30}><h2 className="brush">Rewards</h2></AnimatedContent>
+    <AnimatedContent className="grid3" stagger={0.1} distance={40}>
+      <div><h3 className="brush">{s.xp} XP</h3><p className="muted">Level {Math.floor(s.xp / 100) + 1}. 15 to 20 XP per game.</p></div>
+      <div><h3 className="brush">{s.streak}-day streak</h3><p className="muted">Play one game a day to keep it going.</p></div>
+      <div><h3 className="brush">{s.gems} gems</h3><p className="muted">2 gems per game, 20 bonus gems per finished round.</p></div>
+    </AnimatedContent>
+    <div className="card" style={{ marginTop: 28 }}><h3 className="brush">Reward chests: {s.chests}</h3><p className="muted">Finish a round to earn a chest. Choose one reward each time.</p>
+      <div className="row"><button className="btn main" disabled={s.chests < 1} onClick={() => claim('pro')}>Pro plan for 6 days</button><button className="btn" disabled={s.chests < 1} onClick={() => claim('skip')}>Skip a round</button></div>
+      <p className="small muted">{pro ? 'Pro active until ' + new Date(s.proUntil).toLocaleDateString('en-IN') + '. ' : ''}Round skips saved: {s.skip || 0}. <button className="btn g" disabled={!(s.skip > 0)} onClick={useSkip}>Use a skip now</button></p></div>
+    <div className="card" style={{ marginTop: 20, maxWidth: 520 }}><h3 className="brush">Rate PDCrest</h3>
+      <label className="small muted">Rating</label><select value={rate} onChange={e => setRate(+e.target.value)}>{[5, 4, 3, 2, 1].map(n => <option key={n} value={n}>{n} out of 5</option>)}</select>
+      <textarea rows="3" placeholder="What would make PDCrest better?" value={txt} onChange={e => setTxt(e.target.value)} style={{ margin: '10px 0' }} /><button className="btn main" onClick={send}>Send feedback</button></div>
+  </div>);
+};
+
+const Pricing = ({ s }) => {
+  const f = festStatus(), price = f.on ? BASE * (1 - OFF) : BASE;
+  const [sel, setSel] = useState(null), [pm, setPm] = useState('upi'), [upi, setUpi] = useState(''), [done, setDone] = useState('');
+  const total = sel === 'Pro' ? price : 3000;
+  const Plan = ({ n, p, list, hot, note }) => (<div className={'card plan' + (hot ? ' hot' : '')}><h3 className="brush">{n}</h3>
+    {hot && f.on && <div className="was">{inr(BASE)}</div>}<div className="price">{p}</div><div className="small muted">{note}</div>
+    <ul className="muted">{list.map(x => <li key={x}>{x}</li>)}</ul><button className="btn main" onClick={() => { if (n !== 'Free') { setSel(n); setDone(''); } else location.hash = 'rounds'; }}>{n === 'Free' ? 'Start free' : 'Choose ' + n}</button></div>);
+  return (<div className="wrap sec" style={{ borderTop: 0 }}>
+    <AnimatedContent trigger="mount" distance={30}><h2 className="brush">Pricing 2026-27</h2></AnimatedContent>
+    <p className="muted" role="status">{f.on ? `${f.n} offer: 12% off Pro. ${f.left} day${f.left > 1 ? 's' : ''} left.` : f.n ? `Next offer: ${f.n}, 12% off for 15 days, starts in ${f.in} days.` : 'No festival offer right now.'}{Date.now() < s.proUntil ? ' Your reward Pro is active.' : ''}</p>
+    <AnimatedContent className="plans" stagger={0.12} distance={50}>
+      <Plan n="Free" p="₹0" note="12 hours from your first game, rounds 1 to 3 only" list={['Rounds 1 to 3', 'Super: 5 chats a day', 'XP and streaks']} />
+      <Plan hot n="Pro" p={inr(price)} note="per year, starting price" list={['All 20 rounds', 'Unlimited chats with Super', 'Progress reports']} />
+      <Plan n="Family" p={inr(3000)} note="per year, up to 4 learners (placeholder price)" list={['Everything in Pro', 'Family progress view']} />
+    </AnimatedContent>
+    {sel && (<div className="card" style={{ marginTop: 24, maxWidth: 560 }}><h3 className="brush">Checkout: {sel}</h3>
+      <p>Total: <b>{inr(total)}</b> per year (2026-27)</p>
+      <fieldset style={{ border: 0, padding: 0, margin: 0 }}><legend className="small muted">Payment method</legend>
+        {[['upi', 'UPI (Google Pay, PhonePe, Paytm)'], ['card', 'Debit or credit card'], ['nb', 'Net banking'], ['wallet', 'Wallets']].map(([k, l]) => <label key={k} className="opt" style={{ display: 'flex', gap: 10, alignItems: 'center', cursor: 'pointer' }}><input type="radio" name="pm" checked={pm === k} onChange={() => setPm(k)} style={{ width: 'auto' }} />{l}</label>)}</fieldset>
+      {pm === 'upi' ? <input aria-label="UPI ID" placeholder="yourname@upi" value={upi} onChange={e => setUpi(e.target.value)} style={{ marginTop: 6 }} /> : <p className="small muted">You’ll enter these details on your payment provider’s secure page. This site never sees card or bank details.</p>}
+      <div className="row" style={{ marginTop: 14 }}><button className="btn main" disabled={pm === 'upi' && !/^[\w.\-]{2,}@[a-z]{2,}$/i.test(upi)} onClick={() => setDone('Demo only: no money was charged. Connect a payment gateway such as Razorpay to take real payments.')}>Pay {inr(total)}</button><button className="btn" onClick={() => setSel(null)}>Cancel</button></div>
+      <p role="status" className="small muted">{done}</p></div>)}
+    <p className="small muted">Festival discounts: 12% on Pro, each lasting at most 15 days. Festival dates here: {FEST.map(x => x[0] + ' ' + x[1]).join(', ')}.</p>
+  </div>);
+};
+
+const Account = ({ s, upd, toast }) => {
+  const [num, setNum] = useState(''), [tab, setTab] = useState('wa');
+  const sign = via => upd(p => { p.user = { via, id: via === 'WhatsApp' ? num : 'Google account' }; return p; });
+  const gen = () => upd(p => { p.keys = [...p.keys, 'pdc_' + Array.from(crypto.getRandomValues(new Uint8Array(16))).map(b => b.toString(16).padStart(2, '0')).join('')]; return p; });
+  return (<div className="wrap sec" style={{ borderTop: 0, maxWidth: 640 }}>
+    <AnimatedContent trigger="mount" distance={30}><h2 className="brush">Account</h2></AnimatedContent>
+    <div className="card"><h3 className="brush">Sign in</h3>
+      {s.user ? (<p>Signed in with {s.user.via} ({s.user.id}). <button className="btn g" onClick={() => upd(p => { p.user = null; return p; })}>Sign out</button></p>) : (<>
+        <div className="row" style={{ margin: '10px 0' }}><button className={'btn g' + (tab === 'wa' ? ' d' : '')} onClick={() => setTab('wa')}>WhatsApp number</button><button className={'btn g' + (tab === 'g' ? ' d' : '')} onClick={() => setTab('g')}>Google account</button></div>
+        {tab === 'wa' ? (<><label className="small muted" htmlFor="n">WhatsApp number</label><input id="n" inputMode="tel" placeholder="+91 98765 43210" value={num} onChange={e => setNum(e.target.value)} style={{ margin: '6px 0 10px' }} /><button className="btn main" disabled={num.replace(/\D/g, '').length < 10} onClick={() => sign('WhatsApp')}>Continue</button></>) : <button className="btn main" onClick={() => sign('Google')}>Continue with Google</button>}
+        <p className="small muted">Demo sign-in: no code is sent and nothing is verified yet. Real WhatsApp and Google sign-in need a server.</p></>)}</div>
+    <div className="card" style={{ marginTop: 20 }}><h3 className="brush">API keys</h3>
+      <p className="small muted">Demo keys for a future PDCrest API. They are created and kept only in this browser.</p>
+      {s.keys.map(k => <div key={k} className="row small" style={{ alignItems: 'center', marginBottom: 6 }}><code style={{ wordBreak: 'break-all' }}>{k}</code><button className="btn g" onClick={() => upd(p => { p.keys = p.keys.filter(x => x !== k); return p; })}>Revoke</button></div>)}
+      <button className="btn main" onClick={gen}>Create key</button></div>
+  </div>);
+};
+
+const Responses = () => {
+  const [st, setSt] = useState('load'), [rows, setRows] = useState([]);
+  useEffect(() => { let off; (async () => { try { const u = await claude.use('user'), db = await claude.use('db'); if (!u || !db || !(await u.isOwner())) return setSt('no');
+    setSt('ok'); off = db.collection('responses').onSnapshot(q => setRows(q.docs.map(d => d.data())), () => setSt('no')); } catch (e) { setSt('no'); } })(); return () => off && off(); }, []);
+  if (st !== 'ok') return <div className="wrap sec"><p className="muted">{st === 'load' ? 'Loading…' : 'This page is only available to the site owner.'}</p></div>;
+  const n = rows.length, avg = n ? rows.reduce((a, r) => a + r.rating, 0) / n : 0;
+  return (<div className="wrap sec" style={{ borderTop: 0, maxWidth: 720 }}>
+    <h2 className="brush">Customer Responses</h2><p className="muted">{n} response{n === 1 ? '' : 's'} · average {avg.toFixed(1)} out of 5</p>
+    {[5, 4, 3, 2, 1].map(k => { const c = rows.filter(r => r.rating === k).length; return <div key={k} className="small">{k} stars: {c}<div className="bar"><i style={{ width: (n ? c / n * 100 : 0) + '%' }} /></div></div>; })}
+    <h3 className="brush" style={{ marginTop: 20 }}>Recent comments</h3>
+    {rows.filter(r => r.text).sort((a, b) => b.at - a.at).slice(0, 10).map((r, i) => <div className="card" key={i} style={{ marginBottom: 8 }}>{r.rating}/5: {r.text}</div>)}
+  </div>);
+};
+
+/* ---------- App shell ---------- */
+const App = () => {
+  const [s, setS] = useState(load), [h, setH] = useState(location.hash.slice(1) || 'home'), [own, setOwn] = useState(false), [tt, setTt] = useState('');
+  useEffect(() => { const f = () => { setH(location.hash.slice(1) || 'home'); window.scrollTo(0, 0); }; addEventListener('hashchange', f); return () => removeEventListener('hashchange', f); }, []);
+  useEffect(() => { (async () => { try { const u = await claude.use('user'); setOwn(u ? await u.isOwner() : false); } catch (e) {} })(); }, []);
+  const [dark, setDark] = useState(() => { try { const t = localStorage.getItem('pdc-theme'); if (t) return t === 'dark'; } catch (e) {} return !!(window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches); });
+  useEffect(() => { document.documentElement.dataset.theme = dark ? 'dark' : 'light'; }, [dark]);
+  useEffect(() => { document.body.style.background = h === 'home' ? '#2A0912' : ''; }, [h]);
+  const flip = () => { const n = !dark; setDark(n); try { localStorage.setItem('pdc-theme', n ? 'dark' : 'light'); } catch (e) {} };
+  const toast = m => { setTt(m); setTimeout(() => setTt(''), 2600); };
+  const upd = f => setS(p => { const n = f({ ...p }); save(n); return n; });
+  const award = (r, t, g) => { upd(p => {
+    if (p.done[key(r, t, g)]) return p;
+    p.done = { ...p.done, [key(r, t, g)]: 1 }; p.xp += XPG[g]; p.gems += 2; if (!p.start) p.start = Date.now();
+    const td = dayStr(new Date()), y = dayStr(new Date(Date.now() - DAY));
+    if (p.last !== td) { p.streak = p.last === y ? p.streak + 1 : 1; p.last = td; }
+    if (!p.skipped[r] && roundDone(p, r) && !p.rc?.[r]) { p.rc = { ...p.rc, [r]: 1 }; p.chests++; p.gems += 20; setTimeout(() => toast('Round complete! Choose a reward'), 0); } else setTimeout(() => toast('+' + XPG[g] + ' XP'), 0);
+    return p; }); };
+  const m = h.match(/^round-(\d+)$/), ri = m ? +m[1] - 1 : -1;
+  const page = h === 'rounds' ? <Rounds s={s} /> : ri >= 0 && ri < 20 ? <Round key={h} r={ri} s={s} award={award} toast={toast} /> : h === 'super' ? <Super /> : h === 'rewards' ? <Rewards s={s} upd={upd} toast={toast} /> : h === 'pricing' ? <Pricing s={s} /> : h === 'account' ? <Account s={s} upd={upd} toast={toast} /> : h === 'responses' ? <Responses /> : <Dash s={s} />;
+  const L = [['dashboard', 'Dashboard'], ['rounds', 'Rounds'], ['super', 'Super'], ['rewards', 'Rewards'], ['pricing', 'Pricing'], ['account', 'Account']].concat(own ? [['responses', 'Customer Responses']] : []).concat([['home', 'Website']]);
+  if (h === 'home') return <Landing />;
+  return (<>
+    <header><div className="wrap"><a className="logo" href="#dashboard" aria-label="PDCrest dashboard"><Mark size={48} /><span className="brush">PDCrest</span></a>
+      <nav aria-label="Main">{L.map(([k, n]) => <a key={k} href={'#' + k} className={h === k || (k === 'rounds' && ri >= 0) ? 'on' : ''}>{n}</a>)}<button className="btn g" aria-pressed={dark} onClick={flip}>{dark ? 'Dark mode: on' : 'Dark mode: off'}</button></nav></div></header>
+    <div className="stats"><div className="wrap"><span className="pill">XP <b>{s.xp}</b></span><span className="pill">Streak <b>{s.streak}</b></span><span className="pill">Gems <b>{s.gems}</b></span><span className="pill">Chests <b>{s.chests}</b></span>{Date.now() < s.proUntil && <span className="pill"><b>Pro active</b></span>}</div></div>
+    <main key={h}>{page}</main>
+    <footer><div className="wrap">PDCrest offers general guidance and is not a substitute for medical or psychological advice. Progress is saved in this browser.</div></footer>
+    {tt && <div className="toast" role="status">{tt}</div>}
+  </>);
+};
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+<script>if('serviceWorker' in navigator){addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}</script>
+</body>
+</html>
