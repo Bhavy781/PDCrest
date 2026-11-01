@@ -17,17 +17,16 @@ const MIME_TYPES = {
 
 const http = require('http');
 
-const PORT = process.env.PORT || 3000;
 const GEMINI_KEY = process.env.GEMINI_API_KEY;
-const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-flash-latest';
+const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-1.5-flash-latest';
 const EL_KEY = process.env.ELEVENLABS_API_KEY;
-const EL_VOICE = process.env.ELEVENLABS_VOICE_ID || '21m00Tcm4TlvDq8ikWAM';
-const EL_MODEL = process.env.ELEVENLABS_MODEL || 'eleven_multilingual_v2';
+const EL_VOICE = process.env.ELEVENLABS_VOICE_ID || '21m00Tcm4T1vDq8ikWAM';
+const EL_MODEL = process.env.ELEVENLABS_MODEL || 'eleven_flash_v2_5';
 const ORIGINS = (process.env.ALLOWED_ORIGIN || '').split(',').map(s => s.trim()).filter(Boolean);
 
-const SYSTEM = 'You are Super, the friendly AI mentor in PDCrest, an app for personality development and emotional well-being.\n' +
-  'Reply in 2-4 short, warm, practical sentences with one concrete step. You are not a doctor and do not diagnose.\n' +
-  'If the user mentions self-harm or hurting someone, urge them to contact Tele-MANAS (14416, free, 24/7).';
+const SYSTEM = 'You are Super, the friendly AI mentor in PDCrest, an app for personality development and emotional well-being.' +
+  'Reply in 2-4 short, warm, practical sentences with one concrete step. You are not a doctor and do not offer medical advice.' +
+  'If the user mentions self-harm or hurting someone, urge them to contact Tele-MANAS (14416, free, 24/7) or emergency services immediately.';
 
 // Simple per-IP limit so strangers cannot run up your bill: 20 requests per minute.
 const hits = new Map();
@@ -39,8 +38,7 @@ setInterval(() => { const n = Date.now(); for (const [k, v] of hits) if (!v.some
 
 const json = (res, code, obj) => { res.writeHead(code, { 'Content-Type': 'application/json' }); res.end(JSON.stringify(obj)); };
 const readBody = req => new Promise((ok, no) => {
-  let d = '';
-  req.on('data', c => { d += c; if (d.length > 20000) { no(new Error('too big')); req.destroy(); } });
+  let d = ''; req.on('data', c => d += c);
   req.on('end', () => { try { ok(JSON.parse(d || '{}')); } catch (e) { no(e); } });
 });
 
@@ -78,18 +76,18 @@ http.createServer(async (req, res) => {
 
     if (req.url === '/api/mentor') {
       if (!GEMINI_KEY) return json(res, 503, { error: 'Mentor is not configured' });
-      let msgs = (Array.isArray(b.messages) ? b.messages : []).slice(-12)
+      let msgs = (Array.isArray(b.messages) ? b.messages : []).slice(-6)
         .filter(m => m && typeof m.text === 'string' && m.text.trim())
         .map(m => ({ role: m.role === 'user' ? 'user' : 'model', parts: [{ text: m.text.slice(0, 1000) }] }));
       while (msgs.length && msgs[0].role !== 'user') msgs.shift();
-      if (!msgs.length || msgs[msgs.length - 1].role !== 'user') return json(res, 400, { error: 'Send a user message.' });
+      if (!msgs.length || msgs[msgs.length - 1].role !== 'user') return json(res, 400, { error: 'Send user message' });
 
-      const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_KEY}`, {
+      const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-goog-api-key': GEMINI_KEY },
-        body: JSON.stringify({ systemInstruction: { parts: [{ text: SYSTEM }] }, contents: msgs })
+        body: JSON.stringify({ systemInstruction: { parts: [{ text: SYSTEM }] }, contents: msgs, generationConfig: { maxOutputTokens: 180, temperature: 0.7, thinkingConfig: { thinkingBudget: 0 } } })
       });
-      if (!r.ok) { console.error('Gemini error', r.status, (await r.text()).slice(0, 300)); return json(res, 502, { error: 'Mentor unavailable.' }); }
+      if (!r.ok) { console.error('Gemini error', r.status, (await r.text()).slice(0, 300)); return json(res, 502, { error: 'Mentor unavailable' }); }
       const data = await r.json();
       const reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
       if (!reply) return json(res, 502, { error: 'Empty answer.' });
@@ -112,7 +110,8 @@ http.createServer(async (req, res) => {
     }
 
     return json(res, 404, { error: 'Not found' });
-  } catch (e) {
-    return json(res, 400, { error: e.message || 'Bad request' });
+  } catch (err) {
+    console.error('Server error', err);
+    return json(res, 500, { error: 'Internal server error' });
   }
-}).listen(PORT, () => console.log(`PDCrest server on ${PORT}`));
+}).listen(process.env.PORT || 3000, () => console.log('PDCrest server running'));
