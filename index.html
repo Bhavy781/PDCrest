@@ -377,10 +377,6 @@ const API = (window.PDC_API || '').replace(/\/$/, '');
 const Super = () => {
   const [m, setM] = useState([{ r: 's', t: 'Hi, I’m Super, your PDCrest mentor. Tell me what happened today, or ask how to handle a tough moment.' }]);
   const [v, setV] = useState(''), [busy, setBusy] = useState(false), [slow, setSlow] = useState(false);
-  const speak = async t => {
-    if (!API) return;
-    try { const r = await fetch(API + '/api/speak', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text: t }) }); if (!r.ok) throw 0; new Audio(URL.createObjectURL(await r.blob())).play(); } catch (e) {}
-  };
   const send = async () => {
     const q = v.trim(); if (!q || busy) return; setV(''); setBusy(true); setSlow(false);
     const hist = [...m, { r: 'u', t: q }]; setM([...hist, { r: 's', t: '' }]);
@@ -401,7 +397,7 @@ const Super = () => {
   };
   return (<div className="wrap sec" style={{ borderTop: 0, maxWidth: 720 }}>
     <AnimatedContent trigger="mount" distance={30}><h2 className="brush">Super, your AI mentor</h2></AnimatedContent>
-    <div className="card"><div className="chat" role="log" aria-live="polite">{m.map((x, i) => <div key={i} className={'m ' + x.r}>{x.t || 'Super is thinking…'}{x.r === 's' && x.t && API && <div><button className="btn g" style={{ marginTop: 6 }} onClick={() => speak(x.t)}>Listen</button></div>}</div>)}</div>
+    <div className="card"><div className="chat" role="log" aria-live="polite">{m.map((x, i) => <div key={i} className={'m ' + x.r}>{x.t || 'Super is thinking…'}</div>)}</div>
       {busy && slow && <p className="muted small" role="status">Waking up Super… the first reply after a quiet spell can take up to a minute. Thanks for waiting.</p>}
       <div className="row"><input aria-label="Message Super" value={v} placeholder="What’s on your mind?" onChange={e => setV(e.target.value)} onKeyDown={e => e.key === 'Enter' && send()} style={{ flex: 1 }} /><button className="btn main" disabled={busy} onClick={send}>Send</button></div></div>
     <p className="muted small">Super gives general guidance, not medical advice. In India, Tele-MANAS (14416) is free and open 24x7.</p>
