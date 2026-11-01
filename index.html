@@ -384,7 +384,7 @@ const Super = () => {
   const send = async () => {
     const q = v.trim(); if (!q || busy) return; setV(''); setBusy(true); setSlow(false);
     const hist = [...m, { r: 'u', t: q }]; setM([...hist, { r: 's', t: '' }]);
-    const timer = setTimeout(() => setSlow(true), 4000), ctl = new AbortController(), kill = setTimeout(() => ctl.abort(), 90000);
+    const timer = setTimeout(() => setSlow(true), 3000), ctl = new AbortController(), kill = setTimeout(() => ctl.abort(), 90000);
     try {
       if (API) {
         const r = await fetch(API + '/api/mentor', { method: 'POST', signal: ctl.signal, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: hist.map(x => ({ role: x.r === 'u' ? 'user' : 'model', text: x.t })) }) });
@@ -401,7 +401,7 @@ const Super = () => {
   };
   return (<div className="wrap sec" style={{ borderTop: 0, maxWidth: 720 }}>
     <AnimatedContent trigger="mount" distance={30}><h2 className="brush">Super, your AI mentor</h2></AnimatedContent>
-    <div className="card"><div className="chat" role="log" aria-live="polite">{m.map((x, i) => <div key={i} className={'m ' + x.r}>{x.t || '…'}{x.r === 's' && x.t && API && <div><button className="btn g" style={{ marginTop: 6 }} onClick={() => speak(x.t)}>Listen</button></div>}</div>)}</div>
+    <div className="card"><div className="chat" role="log" aria-live="polite">{m.map((x, i) => <div key={i} className={'m ' + x.r}>{x.t || 'Super is thinking…'}{x.r === 's' && x.t && API && <div><button className="btn g" style={{ marginTop: 6 }} onClick={() => speak(x.t)}>Listen</button></div>}</div>)}</div>
       {busy && slow && <p className="muted small" role="status">Waking up Super… the first reply after a quiet spell can take up to a minute. Thanks for waiting.</p>}
       <div className="row"><input aria-label="Message Super" value={v} placeholder="What’s on your mind?" onChange={e => setV(e.target.value)} onKeyDown={e => e.key === 'Enter' && send()} style={{ flex: 1 }} /><button className="btn main" disabled={busy} onClick={send}>Send</button></div></div>
     <p className="muted small">Super gives general guidance, not medical advice. In India, Tele-MANAS (14416) is free and open 24x7.</p>
