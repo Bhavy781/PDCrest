@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script>window.PDC_API='https://pdcrest.onrender.com';</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>PDCrest | Anger management and personality development app</title>
 <meta name="description" content="PDCrest helps you build calm, confidence, and kindness with 20 rounds of short games, an AI mentor named Super, and daily rewards.">
@@ -372,23 +373,34 @@ const Round = ({ r, s, award, toast }) => {
   </div>);
 };
 
+const API = (window.PDC_API || '').replace(/\/$/, '');
 const Super = () => {
   const [m, setM] = useState([{ r: 's', t: 'Hi, I’m Super, your PDCrest mentor. Tell me what happened today, or ask how to handle a tough moment.' }]);
   const [v, setV] = useState(''), [busy, setBusy] = useState(false);
+  const speak = async t => {
+    if (!API) return;
+    try { const r = await fetch(API + '/api/speak', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text: t }) }); if (!r.ok) throw 0; new Audio(URL.createObjectURL(await r.blob())).play(); } catch (e) {}
+  };
   const send = async () => {
     const q = v.trim(); if (!q || busy) return; setV(''); setBusy(true);
     const hist = [...m, { r: 'u', t: q }]; setM([...hist, { r: 's', t: '' }]);
     try {
-      const sample = await claude.use('sample'); if (!sample) throw new Error('none');
-      const prompt = 'You are Super, the friendly AI mentor in PDCrest, an app for personality development and anger management for users in India. Reply in 2-4 short, warm, practical sentences with one concrete step. You are not a doctor. If the user mentions self-harm or hurting someone, urge them to contact Tele-MANAS (14416) or local emergency services.\n\nConversation:\n' + hist.map(x => (x.r === 'u' ? 'User: ' : 'Super: ') + x.t).join('\n') + '\nSuper:';
-      const out = await sample(prompt, { cache: false, onText: ({ text }) => setM([...hist, { r: 's', t: text }]) });
-      setM([...hist, { r: 's', t: out.text }]);
+      if (API) {
+        const r = await fetch(API + '/api/mentor', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: hist.map(x => ({ role: x.r === 'u' ? 'user' : 'model', text: x.t })) }) });
+        if (!r.ok) throw new Error('bad');
+        setM([...hist, { r: 's', t: (await r.json()).reply }]);
+      } else {
+        const sample = await claude.use('sample'); if (!sample) throw new Error('none');
+        const prompt = 'You are Super, the friendly AI mentor in PDCrest, an app for personality development and anger management for users in India. Reply in 2-4 short, warm, practical sentences with one concrete step. You are not a doctor. If the user mentions self-harm or hurting someone, urge them to contact Tele-MANAS (14416) or local emergency services.\n\nConversation:\n' + hist.map(x => (x.r === 'u' ? 'User: ' : 'Super: ') + x.t).join('\n') + '\nSuper:';
+        const out = await sample(prompt, { cache: false, onText: ({ text }) => setM([...hist, { r: 's', t: text }]) });
+        setM([...hist, { r: 's', t: out.text }]);
+      }
     } catch (e) { setM([...hist, { r: 's', t: 'I can’t reach my brain right now. Try again in a moment. Meanwhile, take five slow breaths.' }]); }
     setBusy(false);
   };
   return (<div className="wrap sec" style={{ borderTop: 0, maxWidth: 720 }}>
     <AnimatedContent trigger="mount" distance={30}><h2 className="brush">Super, your AI mentor</h2></AnimatedContent>
-    <div className="card"><div className="chat" role="log" aria-live="polite">{m.map((x, i) => <div key={i} className={'m ' + x.r}>{x.t || '…'}</div>)}</div>
+    <div className="card"><div className="chat" role="log" aria-live="polite">{m.map((x, i) => <div key={i} className={'m ' + x.r}>{x.t || '…'}{x.r === 's' && x.t && API && <div><button className="btn g" style={{ marginTop: 6 }} onClick={() => speak(x.t)}>Listen</button></div>}</div>)}</div>
       <div className="row"><input aria-label="Message Super" value={v} placeholder="What’s on your mind?" onChange={e => setV(e.target.value)} onKeyDown={e => e.key === 'Enter' && send()} style={{ flex: 1 }} /><button className="btn main" disabled={busy} onClick={send}>Send</button></div></div>
     <p className="muted small">Super gives general guidance, not medical advice. In India, Tele-MANAS (14416) is free and open 24x7.</p>
   </div>);
